@@ -7,9 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:zutter/common/theme.dart';
 import 'package:zutter/models/cart.dart';
 import 'package:zutter/models/catalog.dart';
-import 'package:zutter/screens/cart.dart';
-import 'package:zutter/screens/catalog.dart';
-import 'package:zutter/screens/login.dart';
+import 'package:zutter/navigatinos/MainNavigation.dart';
+import 'package:zutter/screens/catalog/cart.dart';
+import 'package:zutter/screens/catalog/catalog.dart';
+import 'package:zutter/screens/login/login.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
@@ -43,6 +44,10 @@ GoRouter router() {
       GoRoute(
         path: '/login',
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: '/main',
+        builder: (context, state) => const MainNavigation(),
       ),
       GoRoute(
         path: '/catalog',

@@ -60,7 +60,7 @@ class LoginFormState extends State<LoginScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Login success!')),
                     );
-                    context.pushReplacement('/catalog');
+                    context.pushReplacement('/main');
                   }
                 },
                 style: ElevatedButton.styleFrom(
