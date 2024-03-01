@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zutter/screens/catalog/catalog.dart';
+import 'package:zutter/screens/maps/maps.dart';
 import 'package:zutter/screens/settings/settings.dart';
 
 class MainNavigation extends StatefulWidget {
@@ -15,10 +16,7 @@ class _NavigationState extends State<MainNavigation> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MyCatalog(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    MapSample(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -45,8 +43,8 @@ class _NavigationState extends State<MainNavigation> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.map),
+            label: 'Maps',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
