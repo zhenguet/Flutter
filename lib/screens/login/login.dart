@@ -25,9 +25,14 @@ class LoginFormState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Welcome',
-                style: Theme.of(context).textTheme.displayLarge,
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 8,
+                ),
+                child: Text(
+                  'Welcome',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(
@@ -50,7 +55,6 @@ class LoginFormState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Username cannot be empty';
