@@ -26,7 +26,7 @@ class LoginFormState extends State<LoginScreen> {
       key: _formKey,
       child: Center(
         child: Container(
-          padding: const EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -39,7 +39,7 @@ class LoginFormState extends State<LoginScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       backgroundImage: AssetImage('assets/images/zutter.png'),
-                      radius: 100.0,
+                      radius: 100,
                     ),
                   ],
                 ),
@@ -118,11 +118,28 @@ class LoginFormState extends State<LoginScreen> {
                   child: const Text(
                     'Login',
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
-              const Text("I forgot my password")
+              InkWell(
+                onTap: () {
+                  log("I forgot my password clicked");
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "I forgot my password",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
