@@ -50,14 +50,8 @@ GoRouter router() {
         builder: (context, state) => const MainNavigation(),
       ),
       GoRoute(
-        path: '/catalog',
-        builder: (context, state) => const MyCatalog(),
-        routes: [
-          GoRoute(
-            path: 'cart',
-            builder: (context, state) => const MyCart(),
-          ),
-        ],
+        path: '/cart',
+        builder: (context, state) => const MyCart(),
       ),
     ],
   );

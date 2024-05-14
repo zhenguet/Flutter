@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:zutter/models/cart.dart';
 
@@ -11,6 +12,12 @@ class MyCart extends StatelessWidget {
       appBar: AppBar(
         title: Text('Cart', style: Theme.of(context).textTheme.displayLarge),
         backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            context.pushReplacement('/main');
+          },
+        ),
       ),
       body: Container(
         color: Colors.yellow,

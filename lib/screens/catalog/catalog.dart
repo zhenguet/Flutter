@@ -66,7 +66,7 @@ class _MyAppBar extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.shopping_cart),
-          onPressed: () => context.go('/catalog/cart'),
+          onPressed: () => context.go('/cart'),
         ),
       ],
     );
