@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class TextForm extends StatefulWidget {
@@ -9,14 +11,14 @@ class TextForm extends StatefulWidget {
   final FormFieldValidator<String>? validator;
 
   const TextForm({
-    Key? key,
+    super.key,
     this.hintText,
     required this.labelText,
     this.suffixIcon,
     this.obscureText = false,
     this.onChanged,
     this.validator,
-  }) : super(key: key);
+  });
 
   @override
   _TextFormState createState() => _TextFormState();
@@ -24,11 +26,22 @@ class TextForm extends StatefulWidget {
 
 class _TextFormState extends State<TextForm> {
   late FocusNode _focusNode;
+  late MaterialColor _labelColor = Colors.grey;
 
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
+
+    _focusNode.addListener(() {
+      setState(() {
+        if (_focusNode.hasFocus) {
+          _labelColor = Colors.blue;
+        } else {
+          _labelColor = Colors.grey;
+        }
+      });
+    });
   }
 
   @override
@@ -61,11 +74,7 @@ class _TextFormState extends State<TextForm> {
             borderSide: const BorderSide(color: Colors.blue),
             borderRadius: BorderRadius.circular(15),
           ),
-          labelStyle: TextStyle(
-            color: _focusNode.hasFocus
-                ? Colors.blue
-                : Colors.black, // Change the label text color based on focus
-          ),
+          labelStyle: TextStyle(color: _labelColor),
         ),
         obscureText: widget.obscureText,
         onChanged: widget.onChanged,
