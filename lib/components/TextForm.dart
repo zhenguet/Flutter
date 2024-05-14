@@ -74,7 +74,7 @@ class _TextFormState extends State<TextForm> {
             borderSide: const BorderSide(color: Colors.blue),
             borderRadius: BorderRadius.circular(15),
           ),
-          labelStyle: TextStyle(color: _labelColor),
+          labelStyle: TextStyle(color: _labelColor, fontSize: 20),
         ),
         obscureText: widget.obscureText,
         onChanged: widget.onChanged,
