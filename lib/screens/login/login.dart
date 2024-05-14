@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zutter/components/Textform.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 class LoginFormState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool passwordVisible = false;
+  String? username;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -29,80 +34,66 @@ class LoginFormState extends State<LoginScreen> {
                 margin: const EdgeInsets.symmetric(
                   vertical: 8,
                 ),
+                child: const Stack(
+                  alignment: Alignment(0, 0.6),
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/zutter.png'),
+                      radius: 100.0,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 8,
+                ),
                 child: Text(
                   'Welcome',
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter username',
-                    labelText: 'Username*',
-                    suffixIcon: const Icon(Icons.person),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blue),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
+              TextForm(
+                hintText: 'Enter username',
+                labelText: 'Username*',
+                suffixIcon: const Icon(Icons.person),
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Username cannot be empty';
+                  }
+                  return null;
+                },
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter password',
-                    labelText: 'Password*',
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          passwordVisible = !passwordVisible;
-                        });
-                      },
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blue),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
+              TextForm(
+                hintText: 'Enter password',
+                labelText: 'Password*',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
                   ),
-                  obscureText: !passwordVisible,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password cannot be empty';
-                    }
-                    return null;
+                  onPressed: () {
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
                   },
                 ),
+                obscureText: !passwordVisible,
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password cannot be empty';
+                  }
+                  return null;
+                },
               ),
               Container(
                 margin: const EdgeInsets.symmetric(
