@@ -48,9 +48,21 @@ class LoginFormState extends State<LoginScreen> {
                 margin: const EdgeInsets.symmetric(
                   vertical: 8,
                 ),
-                child: Text(
-                  'Welcome',
-                  style: Theme.of(context).textTheme.displayLarge,
+                child: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.displayLarge,
+                    children: const <TextSpan>[
+                      TextSpan(
+                        text: 'Welcome to ',
+                      ),
+                      TextSpan(
+                        text: 'Zutter',
+                        style: TextStyle(
+                          color: Colors.blue, // Đổi màu của từ "Zutter"
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               TextForm(

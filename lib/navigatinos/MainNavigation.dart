@@ -15,12 +15,12 @@ class _NavigationState extends State<MainNavigation> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    MyCatalog(),
-    MapSample(),
     Text(
-      'Index 2: School',
+      'Index 0: Home',
       style: optionStyle,
     ),
+    MapSample(),
+    MyCatalog(),
     Settings(),
   ];
 
@@ -47,8 +47,8 @@ class _NavigationState extends State<MainNavigation> {
             label: 'Maps',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.category_sharp),
+            label: 'Catalog',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
