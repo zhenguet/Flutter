@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zutter/components/Textform.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -51,11 +52,11 @@ class LoginFormState extends State<LoginScreen> {
                 child: RichText(
                   text: TextSpan(
                     style: Theme.of(context).textTheme.displayLarge,
-                    children: const <TextSpan>[
+                    children: <TextSpan>[
                       TextSpan(
-                        text: 'Welcome to ',
+                        text: AppLocalizations.of(context)!.helloWorld,
                       ),
-                      TextSpan(
+                      const TextSpan(
                         text: 'Zutter',
                         style: TextStyle(
                           color: Colors.blue, // Đổi màu của từ "Zutter"

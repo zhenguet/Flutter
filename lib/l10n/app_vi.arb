@@ -1,0 +1,6 @@
+{
+  "helloWorld": "Chào mừng! ",
+  "@helloWorld": {
+    "description": "Lời chào của lập trình viên mới"
+  }
+}

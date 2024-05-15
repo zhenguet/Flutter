@@ -2,16 +2,17 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:window_size/window_size.dart';
 import 'package:zutter/common/theme.dart';
 import 'package:zutter/models/cart.dart';
 import 'package:zutter/models/catalog.dart';
 import 'package:zutter/navigatinos/MainNavigation.dart';
 import 'package:zutter/screens/catalog/cart.dart';
-import 'package:zutter/screens/catalog/catalog.dart';
 import 'package:zutter/screens/login/login.dart';
-import 'package:window_size/window_size.dart';
 
 void main() {
   setupWindow();
@@ -79,6 +80,16 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         routerConfig: router(),
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          AppLocalizations.delegate, // Add this line
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'),
+          Locale('vi'),
+        ],
       ),
     );
   }
