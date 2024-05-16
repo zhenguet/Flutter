@@ -36,8 +36,10 @@ typedef MarkerUpdateAction = Marker Function(Marker marker);
 class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
   PlaceMarkerBodyState();
   static const LatLng center = LatLng(-33.86711, 151.1947171);
+  static const CameraPosition _kLake = CameraPosition(target: center, zoom: 11);
 
-  GoogleMapController? controller;
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   MarkerId? selectedMarker;
   int _markerIdCounter = 1;
@@ -45,7 +47,7 @@ class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
 
   // ignore: use_setters_to_change_properties
   void _onMapCreated(GoogleMapController controller) {
-    this.controller = controller;
+    _controller.complete(controller);
   }
 
   @override
@@ -288,6 +290,11 @@ class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
     return await bitmapIcon.future;
   }
 
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+
   @override
   Widget build(BuildContext context) {
     final MarkerId? selectedId = selectedMarker;
@@ -297,13 +304,22 @@ class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: const CameraPosition(
-                target: LatLng(-33.852, 151.211),
-                zoom: 11.0,
+            child: Scaffold(
+              body: GoogleMap(
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(-33.852, 151.211),
+                  zoom: 11.0,
+                ),
+                markers: Set<Marker>.of(markers.values),
               ),
-              markers: Set<Marker>.of(markers.values),
+              floatingActionButton: FloatingActionButton.extended(
+                onPressed: _goToTheLake,
+                label: const Text('To the lake!'),
+                icon: const Icon(Icons.directions_boat),
+              ),
+              floatingActionButtonLocation:
+                  CustomFloatingActionButtonLocation(),
             ),
           ),
           Row(
@@ -417,5 +433,17 @@ class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
         ),
       ),
     ]);
+  }
+}
+
+class CustomFloatingActionButtonLocation extends FloatingActionButtonLocation {
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    double x = 16.0; // khoảng cách từ cạnh trái
+    double y = scaffoldGeometry.scaffoldSize.height -
+        scaffoldGeometry.floatingActionButtonSize.height -
+        16.0; // khoảng cách từ cạnh dưới
+
+    return Offset(x, y);
   }
 }
