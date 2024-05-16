@@ -19,7 +19,7 @@ class _NavigationState extends State<MainNavigation> {
       'Index 0: Home',
       style: optionStyle,
     ),
-    MapSample(),
+    PlaceMarkerPage(),
     MyCatalog(),
     Settings(),
   ];
