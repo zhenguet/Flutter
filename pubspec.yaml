@@ -46,6 +46,8 @@ dependencies:
         sdk: flutter
     dropdown_button2: ^2.3.9
     geolocator: ^9.0.2
+    json_annotation: ^4.9.0
+    http: ^1.2.1
 
 dev_dependencies:
     flutter_test:
